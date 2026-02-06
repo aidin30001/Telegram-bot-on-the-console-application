@@ -11,6 +11,6 @@ public class Start_BadDay : BaseCallbackCommand
   public override async Task Answer(CallbackQuery callback)
   {
     if (callback.Message == null) return;
-    await Client.SendMessage(callback.Message.Chat.Id, "Сочувствую что у тебя плохой день");
+    await Client.SendMessage(callback.Message.Chat.Id, "I'm really sorry you're having a bad day today.");
   }
 }

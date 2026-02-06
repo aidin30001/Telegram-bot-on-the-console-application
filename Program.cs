@@ -12,7 +12,7 @@ string? token = config["BotToken"];
 
 if (string.IsNullOrEmpty(token))
 {
-  Console.WriteLine("Ошибка: Токен не найден в Secret Manager!");
+  Console.WriteLine("Error: Token not found in Secret Manager!");
   return;
 }
 
@@ -22,7 +22,7 @@ bot.OnMessage += OnMessage;
 bot.Start();
 
 
-Console.WriteLine("Бот запущен. Нажмите клавишу enter для выхода...");
+Console.WriteLine("The bot is running. Press enter to exit...");
 Console.ReadLine();
 
 bot.End();

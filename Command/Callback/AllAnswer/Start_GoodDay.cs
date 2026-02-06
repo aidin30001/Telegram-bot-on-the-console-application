@@ -11,6 +11,6 @@ public class Start_GoodDay : BaseCallbackCommand
   public override async Task Answer(CallbackQuery callback)
   {
     if (callback.Message == null) return;
-    await Client.SendMessage(callback.Message.Chat.Id, "Хорошо что у тебя хороший день");
+    await Client.SendMessage(callback.Message.Chat.Id, "It's good that you have a good day today.");
   }
 }

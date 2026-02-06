@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Command\Slash\AllCommands\" />
-    <Folder Include="Command\StateMachine\" />
   </ItemGroup>
 
 </Project>

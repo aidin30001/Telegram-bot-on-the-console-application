@@ -7,6 +7,10 @@ namespace TelegramBot.Command.Callback;
 /// <summary>
 /// Контроллер управления Callback-запросами (нажатия на Inline-кнопки).
 /// Отвечает за регистрацию, поиск и выполнение логики ответов на основе рефлексии.
+/// <para>
+/// Controller for handling Callback queries (Inline button clicks).
+/// Responsible for registration, lookup, and execution of response logic using reflection.
+/// </para>
 /// </summary>
 public class CallbackQueryController
 {
@@ -36,16 +40,26 @@ public class CallbackQueryController
   //   await command.Answer(callbackQuery, client, update);
   // }
   #endregion
-  // <summary>
-  /// Реестр доступных Callback-команд. 
+  /// <summary>
+  /// Реестр доступных Callback-команд.
   /// Ключ: Значение callback_data кнопки в нижнем регистре.
   /// Значение: Тип класса, реализующего обработку нажатия.
+  /// <para>
+  /// Registry of available Callback commands.
+  /// Key: Lowercase callback_data value of the button.
+  /// Value: Type of the class implementing click handling logic.
+  /// </para>
   /// </summary>
   private static readonly Dictionary<string, Type> _commandRegistry;
   /// <summary>
   /// Инициализирует статический реестр Callback-команд.
   /// Сканирует сборку на наличие классов, наследующих <see cref="BaseCallbackCommand"/>.
   /// Выполняется один раз при первом обращении к классу.
+  /// <para>
+  /// Initializes the static registry of Callback commands.
+  /// Scans the assembly for classes inheriting from <see cref="BaseCallbackCommand"/>.
+  /// Executed once on first access to the class.
+  /// </para>
   /// </summary>
   static CallbackQueryController()
   {
@@ -59,9 +73,22 @@ public class CallbackQueryController
   }
   /// <summary>
   /// Основная точка входа для обработки входящих Callback-запросов.
+  /// <para>
+  /// Main entry point for handling incoming Callback queries.
+  /// </para>
   /// </summary>
-  /// <param name="client">Экземпляр клиента Telegram Bot API.</param>
-  /// <param name="update">Полный объект обновления от Telegram.</param>
+  /// <param name="client">
+  /// Экземпляр клиента Telegram Bot API.
+  /// <para>
+  /// Telegram Bot API client instance.
+  /// </para>
+  /// </param>
+  /// <param name="update">
+  /// Полный объект обновления от Telegram.
+  /// <para>
+  /// Full update object received from Telegram.
+  /// </para>
+  /// </param>
   public static async Task HandleCommandAsync(ITelegramBotClient client, Update update)
   {
     if (update.Type != UpdateType.CallbackQuery) return;

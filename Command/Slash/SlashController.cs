@@ -6,6 +6,10 @@ namespace TelegramBot.Command.Slash;
 /// <summary>
 /// Контроллер управления слэш-командами бота.
 /// Отвечает за регистрацию, поиск и выполнение команд на основе рефлексии.
+/// <para>
+/// Controller for managing bot slash commands.
+/// Responsible for registration, lookup, and execution of commands using reflection.
+/// </para>
 /// </summary>
 public class SlashController
 {
@@ -55,16 +59,27 @@ public class SlashController
   #endregion
 
   /// <summary>
-  /// Реестр доступных команд. 
-  /// Ключ: Имя команды в нижнем регистре (напр. "/start").
+  /// Реестр доступных команд.
+  /// Ключ: Имя команды в нижнем регистре (например, "/start").
   /// Значение: Тип класса, реализующего эту команду.
+  /// <para>
+  /// Registry of available commands.
+  /// Key: Lowercase command name (e.g., "/start").
+  /// Value: Type of the class implementing the command.
+  /// </para>
   /// </summary>
   private static readonly Dictionary<string, Type> _commandRegistry;
   /// <summary>
   /// Инициализирует статический реестр команд.
   /// Сканирует текущую сборку на наличие классов, наследующих <see cref="BaseSlashCommand"/>.
   /// Выполняется один раз при первом обращении к классу.
+  /// <para>
+  /// Initializes the static registry of commands.
+  /// Scans the current assembly for classes inheriting from <see cref="BaseSlashCommand"/>.
+  /// Executed once on first access to the class.
+  /// </para>
   /// </summary>
+
   static SlashController()
   {
     _commandRegistry = Assembly.GetExecutingAssembly()
@@ -77,11 +92,34 @@ public class SlashController
   }
   /// <summary>
   /// Основная точка входа для обработки входящих команд.
+  /// <para>
+  /// Main entry point for handling incoming slash commands.
+  /// </para>
   /// </summary>
-  /// <param name="messageText">Полный текст сообщения пользователя.</param>
-  /// <param name="client">Экземпляр клиента Telegram Bot API.</param>
-  /// <param name="message">Объект сообщения.</param>
-  /// <param name="update">Полный объект обновления от Telegram.</param>
+  /// <param name="messageText">
+  /// Полный текст сообщения пользователя.
+  /// <para>
+  /// Full text of the user's message.
+  /// </para>
+  /// </param>
+  /// <param name="client">
+  /// Экземпляр клиента Telegram Bot API.
+  /// <para>
+  /// Telegram Bot API client instance.
+  /// </para>
+  /// </param>
+  /// <param name="message">
+  /// Объект сообщения.
+  /// <para>
+  /// Message object.
+  /// </para>
+  /// </param>
+  /// <param name="update">
+  /// Полный объект обновления от Telegram.
+  /// <para>
+  /// Full update object from Telegram.
+  /// </para>
+  /// </param>
   public static async Task HandleCommandAsync(string messageText, ITelegramBotClient client, Message message, Update update)
   {
     var (cmdName, argument) = ParseInput(messageText);
@@ -95,12 +133,25 @@ public class SlashController
   }
   /// <summary>
   /// Разбирает входящую строку на имя команды и аргумент.
+  /// <para>
+  /// Parses the input string into command name and argument.
+  /// </para>
   /// </summary>
   /// <example>
   /// "/set 10" -> Name: "/set", Arg: "10"
   /// </example>
-  /// <param name="text">Исходный текст сообщения.</param>
-  /// <returns>Кортеж, содержащий имя команды и необязательный аргумент.</returns>
+  /// <param name="text">
+  /// Исходный текст сообщения.
+  /// <para>
+  /// Original message text.
+  /// </para>
+  /// </param>
+  /// <returns>
+  /// Кортеж, содержащий имя команды и необязательный аргумент.
+  /// <para>
+  /// Tuple containing the command name and optional argument.
+  /// </para>
+  /// </returns>
   private static (string Name, string? Arg) ParseInput(string text)
   {
     string[] parts = text.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
@@ -108,8 +159,16 @@ public class SlashController
   }
   /// <summary>
   /// Формирует список команд для отображения в интерактивном меню Telegram (кнопка "Menu").
+  /// <para>
+  /// Generates a list of commands for display in the Telegram interactive menu ("Menu" button).
+  /// </para>
   /// </summary>
-  /// <returns>Список объектов <see cref="BotCommand"/> для регистрации в API.</returns>
+  /// <returns>
+  /// Список объектов <see cref="BotCommand"/> для регистрации в API.
+  /// <para>
+  /// List of <see cref="BotCommand"/> objects for registration in the API.
+  /// </para>
+  /// </returns>
   public static List<BotCommand> GetBotCommandsForMenu()
   {
     return _commandRegistry.Values.Select(type =>

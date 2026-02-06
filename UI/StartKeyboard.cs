@@ -10,8 +10,8 @@ public class StartKeyboard
   {
     new[]
     {
-      InlineKeyboardButton.WithCallbackData("Хорошый день", "Start_AnswerGoodDay"),
-      InlineKeyboardButton.WithCallbackData("Плохой день", "Start_AnswerBadDay")
+      InlineKeyboardButton.WithCallbackData("Good afternoon", "Start_AnswerGoodDay"),
+      InlineKeyboardButton.WithCallbackData("Bad day", "Start_AnswerBadDay")
     },
     new[] { InlineKeyboardButton.WithUrl("YouTube", "https://youtube.com") },
     new[] { InlineKeyboardButton.WithWebApp("YouTube", new WebAppInfo{ Url = "https://youtube.com" })}
